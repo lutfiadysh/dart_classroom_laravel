@@ -4,6 +4,7 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row">
+        @foreach ($class as $u)
         <div class="col-md-3">
           <a href="" class="card-link">
             <div class="card card-chart">
@@ -12,9 +13,10 @@
                 <i class="material-icons">domain</i>
               </div>
               <div class="card-body">
-                <h4 class="card-title">UI/UX CLUB</h4>
+                <h4 class="card-title">{{$u->class_name}}</h4>
                 <p class="card-category">
                   {{-- card description --}}
+                  {{$u->class_desc}}
                 </p>
               </div>
               <div class="card-footer">
@@ -28,6 +30,7 @@
             </div>
           </a>
         </div>
+        @endforeach
       </div>
     </div>
   </div>

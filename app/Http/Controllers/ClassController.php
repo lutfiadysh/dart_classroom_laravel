@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Classroom;
 
 class ClassController extends Controller
 {
@@ -23,7 +24,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -32,9 +33,11 @@ class ClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Classroom $model)
     {
-        //
+        $model->create($request->all());
+
+        return redirect()->route('home');
     }
 
     /**

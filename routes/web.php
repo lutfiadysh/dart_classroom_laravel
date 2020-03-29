@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.table_list');
 	})->name('table');
 	Route::get('addnewclass','ClassController@index')->name('addclass');
+	Route::post('createclass','ClassController@store')->name('createclass');
 });
 
 Route::group(['middleware' => 'auth'], function () {
