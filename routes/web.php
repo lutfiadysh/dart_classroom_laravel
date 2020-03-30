@@ -24,7 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/class', 'HomeController@index')->name('class.home');
+	Route::get('/show/{id}','ClassController@show')->name('class');
 	Route::get('table-list', function () {
 		return view('pages.table_list');
 	})->name('table');

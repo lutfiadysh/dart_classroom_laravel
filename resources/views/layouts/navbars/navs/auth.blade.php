@@ -13,6 +13,7 @@
     <div class="collapse navbar-collapse justify-content-end">
     
       <ul class="navbar-nav">
+        @if(Route::has('/class'))
         <li class="nav-item">
           <a class="nav-link" href="{{ route('addclass') }}">
             <i class="material-icons">add</i>
@@ -21,6 +22,7 @@
             </p>
           </a>
         </li>
+        @endif
         <li class="nav-item dropdown">
           <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">person</i>
@@ -29,9 +31,6 @@
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
-            <a class="dropdown-item" href="#">{{ __('Settings') }}</a>
-            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
           </div>
         </li>

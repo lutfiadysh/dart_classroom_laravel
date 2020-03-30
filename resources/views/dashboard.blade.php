@@ -6,7 +6,7 @@
       <div class="row">
         @foreach ($class as $u)
         <div class="col-md-3">
-          <a href="" class="card-link">
+          <a href="{{route('class',$u->id)}}" class="card-link">
             <div class="card card-chart">
               <div class="card-header card-header-success centered-text">
                 {{-- isi header --}}

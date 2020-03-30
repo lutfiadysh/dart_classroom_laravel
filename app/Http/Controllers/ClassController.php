@@ -48,7 +48,9 @@ class ClassController extends Controller
      */
     public function show($id)
     {
-        //
+        $class = Classroom::findOrFail($id);
+
+        return view('pages.class',compact('class'));
     }
 
     /**
