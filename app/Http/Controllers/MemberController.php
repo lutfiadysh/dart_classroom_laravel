@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Classroom;
 use App\User;
 use App\Member;
+use App\Classroom;
 
-class ClassController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,7 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $class = Classroom::all();
-        $member = Member::all();
-        return view('dashboard',compact('class','member'));  
+        
     }
 
     /**
@@ -28,7 +26,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        return view('pages.addclass');
+        //
     }
 
     /**
@@ -37,11 +35,9 @@ class ClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Classroom $model)
+    public function store(Request $request)
     {
-        $model->create($request->all());
-
-        return redirect()->route('home.index');
+        //
     }
 
     /**
@@ -52,12 +48,9 @@ class ClassController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
         $class = Classroom::findOrFail($id);
-        $users = User::all();
-        $member = Member::where('classroom_id','=',$class);
-
-        return view('pages.class',compact('class','users','user','member'));
+        $mmb = Member::all();
+        return view('pages.contributor',compact('mmb','class'));
     }
 
     /**
@@ -66,21 +59,9 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,$id2)
+    public function edit($id)
     {
-        $member = Member::all();
-        $class = Classroom::findOrFail($id);
-        $users = User::all();
-        $user = User::findorFail($id2);
-
-        Member::create(
-            [
-                'classroom_id' => $class->id,
-                'user_id' => $user->id
-            ]
-        );
-
-        return redirect()->route('home.index');
+        //
     }
 
     /**

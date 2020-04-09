@@ -19,18 +19,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/class', 'HomeController@index')->name('class.home');
-	Route::get('/show/{id}','ClassController@show')->name('class');
+	Route::get('/class/{id}','ClassController@show')->name('class');
+	Route::get('/class/{id}/{id2}','ClassController@edit')->name('class.member');
+	Route::get('home', 'ClassController@index')->name('home.index');
 	Route::get('table-list', function () {
 		return view('pages.table_list');
 	})->name('table');
-	Route::get('addnewclass','ClassController@index')->name('addclass');
+	Route::get('addnewclass','ClassController@create')->name('addclass');
 	Route::post('createclass','ClassController@store')->name('createclass');
+	Route::get('contributor/{id}','MemberController@edit')->name('member.index');
 });
 
 Route::group(['middleware' => 'auth'], function () {

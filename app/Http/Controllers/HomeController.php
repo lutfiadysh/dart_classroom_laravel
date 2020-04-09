@@ -22,7 +22,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $class = Classroom::all();
-        return view('dashboard',compact('class'));
+        
     }
 }
