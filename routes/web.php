@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('addnewclass','ClassController@create')->name('addclass');
 	Route::post('createclass','ClassController@store')->name('createclass');
 	Route::get('contributor/{id}','MemberController@edit')->name('member.index');
+	Route::post('addtask','MemberController@store')->name('task.store');
+	Route::get('collectTask/{id}/{id2}','MemberController@show')->name('task.collect');
+	Route::post('StoreCollectedTask','MemberController@update')->name('task.store');
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Classroom;
 use App\User;
 use App\Member;
+use App\Task;
 
 class ClassController extends Controller
 {
@@ -55,9 +56,10 @@ class ClassController extends Controller
         $user = User::find($id);
         $class = Classroom::findOrFail($id);
         $users = User::all();
-        $member = Member::where('classroom_id','=',$class);
+        $member = Member::where('classroom_id','=',$class->id)->get();
+        $task = Task::where('classroom_id','=',$class->id)->get();
 
-        return view('pages.class',compact('class','users','user','member'));
+        return view('pages.class',compact('class','users','user','member','task'));
     }
 
     /**

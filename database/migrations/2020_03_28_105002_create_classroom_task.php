@@ -18,7 +18,6 @@ class CreateClassroomTask extends Migration
             $table->unsignedBigInteger('classroom_id');
             $table->string('task_title');
             $table->string('task_body');
-            $table->boolean('member_gather');
             $table->date('due_task');
             $table->foreign('classroom_id')
                 ->references('id')->on('classroom');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Member;
 use App\Classroom;
+use App\Task;
+use App\Collect;
 
 class MemberController extends Controller
 {
@@ -37,7 +39,9 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Task::create($request->all());
+
+        return redirect()->back();
     }
 
     /**
@@ -46,11 +50,13 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$id2)
     {
         $class = Classroom::findOrFail($id);
+        $task = Task::findOrFail($id2);
+        $taskcollect = Collect::all();
         $mmb = Member::all();
-        return view('pages.contributor',compact('mmb','class'));
+        return view('pages.collect',compact('mmb','class','task','taskcollect'));
     }
 
     /**
@@ -61,7 +67,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -71,9 +77,11 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        Collect::create($request->all());
+
+        return redirect()->back();
     }
 
     /**
