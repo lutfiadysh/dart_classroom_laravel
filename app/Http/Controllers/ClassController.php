@@ -17,9 +17,8 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $class = Classroom::all();
-        $member = Member::all();
-        return view('dashboard',compact('class','member'));  
+        $class = Member::all();
+        return view('dashboard',compact('class'));  
     }
 
     /**
@@ -41,6 +40,12 @@ class ClassController extends Controller
     public function store(Request $request,Classroom $model)
     {
         $model->create($request->all());
+        Member::create(
+            [
+                'user_id' => $request->leader_id,
+                'classroom_id' => $request->classroom_id
+            ]
+        );
 
         return redirect()->route('home.index');
     }
@@ -55,7 +60,7 @@ class ClassController extends Controller
     {
         $user = User::find($id);
         $class = Classroom::findOrFail($id);
-        $users = User::all();
+        $users = User::where('id','!=',$class->leader_id)->get();
         $member = Member::where('classroom_id','=',$class->id)->get();
         $task = Task::where('classroom_id','=',$class->id)->get();
 

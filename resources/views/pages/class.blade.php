@@ -20,9 +20,7 @@
                     Add member
                 </button>
                 @else
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal">
-                  Collect Task
-                </button>
+                
                 @endif
               </div>
             </div>
@@ -132,11 +130,15 @@
                   </thead>
                   <tbody>
                       @foreach ($member as $s)
+                      @if($s->id == $class->leader_id)
+                      
+                      @else
                       <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$s->user->username}}</td>
                         <td>{{$s->user->email}}</td>
                       </tr>
+                      @endif
                       @endforeach    
                   </tbody>
               </table>
@@ -156,7 +158,7 @@
           </button>
       </div>
           <div class="modal-body table-responsive">
-              <form action="{{route('task.store')}}" method="post">
+              <form action="{{route('task.create')}}" method="post">
                 @csrf
                 <input type="hidden" name="classroom_id" value="{{$class->id}}">
                 <div class="form-group">
@@ -175,3 +177,7 @@
       </div>
   </div>
 </div>
+
+@push('js')
+ 
+@endpush

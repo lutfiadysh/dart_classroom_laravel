@@ -18,13 +18,26 @@
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('table') }}">
+        <a class="nav-link" href="{{ route('calendar') }}">
           <i class="material-icons">calendar_today</i>
             <p>{{ __('Calendar') }}</p>
         </a>
       </li>
       <div class="dropdown-divider"></div>
       {{-- add new sidebar menu --}}
+      @if(Request::has('class'))
+      <p class="subtitle ml-4">Teaching</p>
+        @if($class->leader_id ?? '' == Auth::user()->id)
+        <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+          <a class="nav-link" href="{{ route('calendar') }}">
+            <i class="material-icons">calendar_today</i>
+              <p>{{ __('Calendar') }}</p>
+          </a>
+        </li>
+        @else
+
+        @endif
+      @endif
     </ul>
   </div>
 </div>

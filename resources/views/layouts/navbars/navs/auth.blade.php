@@ -13,13 +13,17 @@
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         @if(Request::is('home'))
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('addclass') }}">
-            <i class="material-icons">add</i>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">note_add</i>
             <p class="d-lg-none d-md-block">
-              {{ __('Stats') }}
+              {{ __('plus') }}
             </p>
           </a>
+          <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdownProfile">
+            <a href="{{route('join.class')}}" class="dropdown-item">Join Class</a>
+            <a class="dropdown-item" href="{{ route('addclass') }}" >{{ __('add class') }}</a>
+          </div>
         </li>
         @endif
         <li class="nav-item dropdown">
@@ -29,7 +33,8 @@
               {{ __('Account') }}
             </p>
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+          <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdownProfile">
+            <p class="description m-2">{{Auth::user()->username}}</p>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
           </div>
         </li>

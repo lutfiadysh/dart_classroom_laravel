@@ -13,4 +13,8 @@ class Member extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function class()
+    {
+        return $this->belongsTo('App\Classroom','classroom_id');
+    }
 }

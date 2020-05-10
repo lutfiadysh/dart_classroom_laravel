@@ -39,6 +39,19 @@ class User extends Authenticatable
 
     public function member()
     {
-        return $this->hasMany('App\Member','id');
+        return $this->hasMany('App\Member');
+    }
+    
+    public function task()
+    {
+        return $this->hasMany('App\Task');
+    }
+    public function collectTask()
+    {
+        return $this->hasOne('App\Collect');
+    }
+    public function collect()
+    {
+        return $this->belongsTo('App\Collect');
     }
 }

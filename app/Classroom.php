@@ -9,4 +9,9 @@ class Classroom extends Model
     protected $table = 'classroom';
 
     protected $fillable = ['leader_id','class_name','class_desc','class_pict'];
+
+    public function member()
+    {
+        return $this->hasMany('App\Member');
+    }
 }

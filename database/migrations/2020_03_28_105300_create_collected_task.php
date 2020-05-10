@@ -18,6 +18,7 @@ class CreateCollectedTask extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBiginteger('task_id');
             $table->string('task_file');
+            $table->boolean('collected');
             $table->foreign('user_id')
                 ->references('id')->on('users');
             $table->foreign('task_id')
